@@ -636,7 +636,28 @@ TEACHER_PASSWORD=كلمة-سر-تعرفها-أنت-وحدك</code></pre>
       <li>ضع الرمز في ملف <code>.env</code>:</li>
     </ol>
     <pre><code>TELEGRAM_BOT_TOKEN=123456:ABC-DEF...</code></pre>
-    <p>ثم، في نافذة طرفية <strong>ثانية</strong> (اترك <code>npm start</code> تعمل في الأولى):</p>
+
+    <div class="note stop">
+      <span class="label">تحذير أمني</span>
+      <p>
+        لا تنشر رمز البوت في أي محادثة أو رسالة أو ملف يُرفع إلى الإنترنت.
+        من يملك الرمز يستطيع إرسال رسائل باسم بوتك إلى تلاميذك.
+        إن تسرّب منك، أرسل <code>/revoke</code> إلى BotFather فيعطيك رمزًا جديدًا فورًا، والقديم يتوقف.
+        الملف <code>.env</code> محميّ أصلًا ولا يُرفع إلى المستودع.
+      </p>
+    </div>
+
+    <h3>أعطِ البوت اسمه ووصفه وأوامره</h3>
+    <p>أمر واحد يضبط اسم البوت ووصفه وقائمة أوامره، بالعربية والفرنسية والإنجليزية دفعة واحدة:</p>
+    <pre><code>npm run telegram:setup</code></pre>
+    <p>
+      شغّله مرة الآن، ثم كلما غيّرت <code>SUBJECT</code> أو <code>BOT_NAME</code>.
+      الشيء الوحيد الذي يبقى يدويًا هو صورة البوت:
+      أرسل <code>/setuserpic</code> إلى BotFather ثم أرسل الصورة.
+    </p>
+
+    <h3>التشغيل</h3>
+    <p>في نافذة طرفية <strong>ثانية</strong> (اترك <code>npm start</code> تعمل في الأولى):</p>
     <pre><code>npm run telegram</code></pre>
     <p>سيطبع رابطًا من الشكل <code>https://t.me/...</code> — هذا ما تشاركه مع التلاميذ.</p>
 
@@ -771,6 +792,8 @@ CLAUDE_EFFORT=low</code></pre>
           <tr><td>PDF كبير جدًا</td><td>الحد الأقصى 32 ميغابايت. قسّم الملف إلى فصول</td></tr>
           <tr><td>أضفت درسًا ولم يظهر</td><td>أعد تشغيل <code>npm run ingest</code>، ثم اضغط «Reload lessons» في لوحة الأستاذ</td></tr>
           <tr><td>البوت لا يرد في تيليغرام</td><td>تأكد أن <code>npm run telegram</code> ما زال يعمل في نافذة الطرفية</td></tr>
+          <tr><td><code>Unauthorized</code> من تيليغرام</td><td>الرمز في <code>.env</code> خاطئ أو تم إلغاؤه. اطلب رمزًا جديدًا من BotFather</td></tr>
+          <tr><td>رسالة أن الرد ليس JSON</td><td>شبكتك أو الجدار الناري يعترض الاتصال بـ <code>api.telegram.org</code>. جرّب شبكة أخرى</td></tr>
         </tbody>
       </table>
     </div>

@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import { INDEX_PATH, TELEGRAM_TOKEN, BOT_NAME, SUBJECT, TEACHER_NAME, RATE_LIMIT_PER_HOUR, CLASS_CODE } from "./config.js";
 import { answerText } from "./tutor.js";
 import { logExchange } from "./store.js";
+import { call } from "./telegram-api.js";
 
 if (!TELEGRAM_TOKEN) {
   console.error(
@@ -11,19 +12,6 @@ if (!TELEGRAM_TOKEN) {
       "  TELEGRAM_BOT_TOKEN=123456:ABC-DEF...\n",
   );
   process.exit(1);
-}
-
-const API = `https://api.telegram.org/bot${TELEGRAM_TOKEN}`;
-
-async function call(method, body) {
-  const res = await fetch(`${API}/${method}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-  const data = await res.json();
-  if (!data.ok) throw new Error(`${method}: ${data.description}`);
-  return data.result;
 }
 
 /** Telegram rejects messages over 4096 characters, so split on paragraph breaks. */

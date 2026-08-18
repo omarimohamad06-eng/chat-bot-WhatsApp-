@@ -97,6 +97,19 @@ Message [@BotFather](https://t.me/botfather) on Telegram, send `/newbot`, follow
 TELEGRAM_BOT_TOKEN=123456:ABC-DEF...
 ```
 
+> **Never paste a bot token into a chat, an issue, or a commit.** Anyone holding it can send
+> messages as your bot. If one leaks, BotFather's `/revoke` issues a new one immediately.
+> `.env` is gitignored so the token stays out of the repository.
+
+Give the bot its name, description and command menu — in Arabic, French and English at once:
+
+```bash
+npm run telegram:setup
+```
+
+Run that once now, and again whenever you change `SUBJECT` or `BOT_NAME`. The profile picture is
+the only thing it can't do: set that with BotFather's `/setuserpic`.
+
 Then, in a second terminal:
 
 ```bash
@@ -174,7 +187,7 @@ Everything lives in `.env`. See `.env.example` for the full list with comments.
 | `CLAUDE_MODEL` | See the cost table above |
 | `CLAUDE_EFFORT` | `low` … `max`. How hard it thinks. `medium` suits most tutoring |
 | `HINT_MODE` | `true` coaches with hints; `false` gives full solutions |
-| `TELEGRAM_BOT_TOKEN` | From @BotFather. Leave empty for web only |
+| `TELEGRAM_BOT_TOKEN` | From @BotFather. Leave empty for web only. Never commit it |
 
 ---
 
@@ -192,6 +205,8 @@ src/
   store.js          conversation log and dashboard stats
   server.js         web channel
   telegram.js       telegram channel
+  telegram-api.js   shared Bot API caller
+  telegram-setup.js one-off: bot name, description, command menu
 public/             the student web app (no build step, plain JS)
 ```
 

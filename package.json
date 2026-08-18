@@ -8,9 +8,12 @@
     "ingest": "node src/ingest.js",
     "start": "node src/server.js",
     "telegram": "node src/telegram.js",
+    "telegram:setup": "node src/telegram-setup.js",
     "dev": "node --watch src/server.js"
   },
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.0",
     "adm-zip": "^0.5.16",
