@@ -9,6 +9,8 @@ Students reach it two ways from the same brain:
 
 It reads PDFs (**including scans and handwritten notes**), Word documents, PowerPoint slides and plain notes. It works in Arabic, French and English, right-to-left included.
 
+> **دليل الاستعمال بالعربية: [GUIDE-AR.md](GUIDE-AR.md)**
+
 It also gives you a **teacher dashboard** showing what your students are actually asking — and, most usefully, which questions your lessons don't answer.
 
 ---
@@ -49,9 +51,9 @@ Open `.env` and fill in at least:
 
 ```ini
 ANTHROPIC_API_KEY=sk-ant-...
-SUBJECT=Mathematics, 2nd year Baccalaureate
+SUBJECT=Sciences de la Vie et de la Terre (SVT)
 TEACHER_NAME=Mr Omari
-CLASS_CODE=math2026
+CLASS_CODE=svt2026
 TEACHER_PASSWORD=something-only-you-know
 ```
 
@@ -63,9 +65,9 @@ Drop your files into the `lessons/` folder:
 
 ```
 lessons/
-  01-fonctions-exponentielles.pdf
-  02-logarithme.pdf
-  term-2/03-suites.pptx
+  01-la-cellule.pdf
+  02-la-mitose.pdf
+  semestre-2/03-geologie.pptx
 ```
 
 The filename becomes the lesson name students see, so name them clearly.
@@ -76,7 +78,7 @@ The filename becomes the lesson name students see, so name them clearly.
 npm run ingest
 ```
 
-PDFs are sent to Claude to be read — this handles scanned pages, photographed handwriting, Arabic script, diagrams and mathematics. Results are cached, so **you only ever pay to read a file once**. Re-run this whenever you add or change a lesson.
+PDFs are sent to Claude to be read — this handles scanned pages, photographed handwriting, Arabic script and diagrams. On a labelled schema it transcribes every legend and annotation, since on an SVT diagram the labels are the lesson content. Results are cached, so **you only ever pay to read a file once**. Re-run this whenever you add or change a lesson.
 
 ### 6. Start
 
@@ -133,14 +135,17 @@ You pay Anthropic per question. Two things dominate the bill:
 |---|---|---|
 | `claude-opus-5` (default) | Hard maths, physics, multi-step reasoning | Highest |
 | `claude-sonnet-5` | Most subjects | Moderate |
-| `claude-haiku-4-5` | Recall-heavy subjects (history, vocabulary, definitions) | Lowest |
+| `claude-haiku-4-5` | Definitions, mechanisms, reading documents | Lowest |
+
+**For SVT specifically**, the subject is definitions, mechanisms and document reading rather than
+multi-step calculation, so `CLAUDE_MODEL=claude-haiku-4-5` with `CLAUDE_EFFORT=low` is very likely
+enough and costs a fraction of the default. Start there, watch the dashboard for a week, and only
+move up to `claude-sonnet-5` if answers feel shallow on a particular lesson.
 
 Two things already keep the bill down:
 
 - **`RATE_LIMIT_PER_HOUR`** (default 40) caps how many questions one student can ask per hour.
 - **Prompt caching.** If your whole course fits under `FULL_CONTEXT_LIMIT` characters, the entire course is sent with every question but cached, so repeat questions cost a fraction of the first. Larger courses automatically switch to sending only the relevant excerpts.
-
-Start with `claude-haiku-4-5` if you want to see real usage before committing to a bigger model — you can change `CLAUDE_MODEL` any time and restart.
 
 ---
 

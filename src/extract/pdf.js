@@ -13,7 +13,7 @@ Rules:
 - Use Markdown headings (#, ##) for the document's own titles and section headers.
 - Write mathematics as LaTeX between $...$ (inline) or $$...$$ (display).
 - Render tables as Markdown tables.
-- For a diagram, chart, or photo, write [Figure: <a precise description of what it shows>] so a student can understand it from the text alone.
+- For a diagram, chart, schema or photo, write [Figure: <precise description>] so a student can understand it from the text alone. Transcribe EVERY label, legend, annotation, arrow caption and axis title on it, and say what each labelled part connects to. On a labelled diagram the labels are the lesson content, not decoration.
 - If handwriting or a scan is unreadable, write [unreadable] rather than guessing.
 
 Output only the transcription, with no preamble or closing remarks.`;

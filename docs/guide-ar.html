@@ -1,0 +1,813 @@
+<title>دليل مساعد الدروس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;700&family=Noto+Naskh+Arabic:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root {
+  --ground:      #f6f8f6;
+  --surface:     #ffffff;
+  --surface-2:   #eef2ef;
+  --ink:         #17211d;
+  --ink-soft:    #4d5a54;
+  --ink-faint:   #78857f;
+  --line:        #dde4df;
+  --line-strong: #c3cec8;
+  --accent:      #1f6f5c;
+  --accent-soft: #e4efea;
+  --on-accent:   #ffffff;
+  --ochre:       #9a6b1f;
+  --ochre-soft:  #f7efdd;
+  --rust:        #a33d2a;
+  --rust-soft:   #f8e7e2;
+  --code-bg:     #eff3f0;
+
+  --step: clamp(1.05rem, 0.98rem + 0.35vw, 1.2rem);
+  --measure: 66ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground:      #0f1512;
+    --surface:     #161e1a;
+    --surface-2:   #1c2621;
+    --ink:         #e7ece9;
+    --ink-soft:    #a8b5af;
+    --ink-faint:   #7d8b85;
+    --line:        #26312c;
+    --line-strong: #37453f;
+    --accent:      #56c2a3;
+    --accent-soft: #16302a;
+    --on-accent:   #0f1512;
+    --ochre:       #d7a44f;
+    --ochre-soft:  #2c2417;
+    --rust:        #e08a75;
+    --rust-soft:   #2e1c17;
+    --code-bg:     #111a16;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground:      #0f1512;
+  --surface:     #161e1a;
+  --surface-2:   #1c2621;
+  --ink:         #e7ece9;
+  --ink-soft:    #a8b5af;
+  --ink-faint:   #7d8b85;
+  --line:        #26312c;
+  --line-strong: #37453f;
+  --accent:      #56c2a3;
+  --accent-soft: #16302a;
+  --on-accent:   #0f1512;
+  --ochre:       #d7a44f;
+  --ochre-soft:  #2c2417;
+  --rust:        #e08a75;
+  --rust-soft:   #2e1c17;
+  --code-bg:     #111a16;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  direction: rtl;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "Noto Naskh Arabic", "Segoe UI", system-ui, serif;
+  font-size: var(--step);
+  line-height: 1.95;
+  text-rendering: optimizeLegibility;
+}
+
+.wrap {
+  max-width: 54rem;
+  margin: 0 auto;
+  padding: clamp(1.75rem, 1rem + 3vw, 3.5rem) clamp(1.1rem, 0.6rem + 2.5vw, 2rem) 6rem;
+}
+
+/* ---------------------------------------------------------------- masthead */
+.masthead {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+
+.eyebrow {
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+h1 {
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.85rem, 1.4rem + 2.2vw, 2.9rem);
+  line-height: 1.35;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.standfirst {
+  margin: 0;
+  max-width: var(--measure);
+  color: var(--ink-soft);
+  font-size: 1.05em;
+}
+
+/* -------------------------------------------------------------------- toc */
+.toc {
+  margin: 2rem 0 0;
+  padding: 1.1rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.toc h2 {
+  margin: 0 0 0.7rem;
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--ink-faint);
+}
+
+.toc ol {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 0.25rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+.toc a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.toc a:hover, .toc a:focus-visible { border-bottom-color: var(--accent); color: var(--accent); }
+
+/* --------------------------------------------------------------- sections */
+section { margin-top: 3.25rem; }
+
+h2 {
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.6rem);
+  line-height: 1.5;
+  margin: 0 0 1rem;
+  text-wrap: balance;
+}
+
+h3 {
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-weight: 500;
+  font-size: 1.05em;
+  margin: 2rem 0 0.6rem;
+  color: var(--ink);
+}
+
+p, ul, ol { max-width: var(--measure); }
+p { margin: 0 0 1rem; }
+
+ul, ol { margin: 0 0 1rem; padding-inline-start: 1.4rem; }
+li { margin-bottom: 0.4rem; }
+li::marker { color: var(--accent); }
+
+a { color: var(--accent); text-underline-offset: 3px; }
+
+strong { font-weight: 700; }
+
+/* ------------------------------------------------------------- lab protocol
+   The setup genuinely must run in order, so the steps are drawn as a
+   connected protocol rather than a plain list. */
+.protocol { margin-top: 2rem; }
+
+.stage {
+  position: relative;
+  padding-inline-end: 3.4rem;
+  padding-bottom: 2.25rem;
+}
+
+.stage::before {
+  content: "";
+  position: absolute;
+  inset-inline-end: 1.19rem;
+  top: 2.6rem;
+  bottom: 0;
+  width: 2px;
+  background: var(--line-strong);
+}
+.stage:last-child::before { display: none; }
+
+.stage > .num {
+  position: absolute;
+  inset-inline-end: 0;
+  top: 0.2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.stage h2 { margin-top: 0.35rem; }
+
+/* ------------------------------------------------------------------- code */
+pre, code, kbd { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+
+/* Commands are Latin: isolate them so RTL bidi never reorders them. */
+code {
+  direction: ltr;
+  unicode-bidi: isolate;
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.1em 0.4em;
+  font-size: 0.85em;
+}
+
+pre {
+  direction: ltr;
+  text-align: left;
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-inline-start: 3px solid var(--accent);
+  border-radius: 3px;
+  padding: 1rem 1.1rem;
+  margin: 0 0 1.25rem;
+  overflow-x: auto;
+  font-size: 0.85em;
+  line-height: 1.75;
+}
+pre code { background: none; border: 0; padding: 0; font-size: 1em; }
+
+/* ---------------------------------------------------------------- callouts */
+.note {
+  max-width: var(--measure);
+  margin: 0 0 1.25rem;
+  padding: 1rem 1.15rem;
+  border-radius: 4px;
+  border-inline-start: 3px solid var(--accent);
+  background: var(--accent-soft);
+}
+.note > :last-child { margin-bottom: 0; }
+
+.note.warn { border-inline-start-color: var(--ochre); background: var(--ochre-soft); }
+.note.stop { border-inline-start-color: var(--rust); background: var(--rust-soft); }
+
+.note .label {
+  display: block;
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+  color: var(--accent);
+}
+.note.warn .label { color: var(--ochre); }
+.note.stop .label { color: var(--rust); }
+
+/* ------------------------------------------------------------------ tables */
+.scroller { overflow-x: auto; margin: 0 0 1.5rem; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92em;
+  min-width: 22rem;
+}
+
+th, td {
+  text-align: start;
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+thead th {
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  border-bottom: 1px solid var(--line-strong);
+  white-space: nowrap;
+}
+
+tbody tr:last-child td { border-bottom: 0; }
+
+/* ------------------------------------------------------------- copy block */
+.copyblock {
+  max-width: var(--measure);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.copyblock header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0.9rem;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.copyblock header span {
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+}
+
+.copyblock button {
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-size: 0.78rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  padding: 0.35rem 0.8rem;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+}
+.copyblock button:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.copyblock button[data-done="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+.copyblock .body {
+  margin: 0;
+  padding: 1.1rem;
+  white-space: pre-wrap;
+  font-family: "Noto Naskh Arabic", serif;
+  font-size: 0.95em;
+  line-height: 1.9;
+}
+
+/* -------------------------------------------------------------------- misc */
+.tree {
+  direction: ltr;
+  text-align: left;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82em;
+  line-height: 1.85;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  margin: 0 0 1.25rem;
+}
+
+.tree b { color: var(--accent); font-weight: 500; }
+
+footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--ink-faint);
+  font-size: 0.88em;
+  max-width: var(--measure);
+}
+
+:where(a, button, summary):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">علوم الحياة والأرض</div>
+    <h1>دليل مساعد الدروس</h1>
+    <p class="standfirst">
+      تطبيق يجيب تلاميذك عن أسئلتهم انطلاقًا من <strong>دروسك أنت</strong>، لا من الإنترنت.
+      هذا الدليل يشرح كيف تشغّله وتشاركه مع قسمك، خطوة بخطوة.
+    </p>
+  </header>
+
+  <nav class="toc">
+    <h2>محتويات الدليل</h2>
+    <ol>
+      <li><a href="#what">ما هو هذا التطبيق؟</a></li>
+      <li><a href="#why">لماذا ليس الواتساب؟</a></li>
+      <li><a href="#need">ما تحتاجه قبل البدء</a></li>
+      <li><a href="#setup">خطوات التشغيل الستّ</a></li>
+      <li><a href="#dashboard">لوحة الأستاذ</a></li>
+      <li><a href="#telegram">بوت تيليغرام</a></li>
+      <li><a href="#deploy">النشر على الإنترنت</a></li>
+      <li><a href="#cost">التكلفة واختيار النموذج</a></li>
+      <li><a href="#behaviour">كيف يجيب التطبيق؟</a></li>
+      <li><a href="#message">رسالة جاهزة للتلاميذ</a></li>
+      <li><a href="#trouble">مشاكل شائعة وحلولها</a></li>
+    </ol>
+  </nav>
+
+  <section id="what">
+    <h2>ما هو هذا التطبيق؟</h2>
+    <p>مساعد يقرأ دروسك، ثم يجيب تلاميذك عن أسئلتهم انطلاقًا منها وحدها. يصل إليه التلاميذ بطريقتين:</p>
+    <ul>
+      <li><strong>تطبيق ويب</strong>: تشارك معهم رابطًا واحدًا في مجموعة الواتساب. يفتحونه في المتصفح، ويمكنهم تثبيته في شاشة الهاتف كأي تطبيق. بدون تحميل وبدون حساب.</li>
+      <li><strong>بوت تيليغرام</strong>: لمن يفضّل الدردشة داخل تطبيق مراسلة.</li>
+    </ul>
+    <p>ولك أنت <strong>لوحة الأستاذ</strong>: ترى فيها ما يسأله التلاميذ فعلًا، والأهم من ذلك: الأسئلة التي لا تجيب عنها دروسك.</p>
+  </section>
+
+  <section id="why">
+    <h2>لماذا ليس الواتساب مباشرة؟</h2>
+    <p>لأن شركة Meta تقف بينك وبين تلاميذك، والانتظار لا يستحق العناء.</p>
+    <p>
+      واجهة الواتساب الرسمية تتطلب حساب Meta Business، ورقم هاتف <strong>غير مسجَّل أصلًا في الواتساب</strong>،
+      ثم التحقق من الحساب قبل مراسلة قسم حقيقي. الرقم التجريبي المجاني يصل إلى 5 أرقام فقط.
+      وحتى بعد الموافقة، لا يمكنك الرد إلا داخل 24 ساعة من رسالة التلميذ.
+    </p>
+    <p>
+      هذا المشروع يتجاوز ذلك كلّه. يبقى الواتساب هو <strong>المكان</strong> الذي تتواصل فيه مع تلاميذك —
+      أنت فقط تشارك رابطًا في المجموعة بدل تمرير الرسائل عبر Meta.
+    </p>
+    <div class="note">
+      <span class="label">وإن حصلت على الموافقة لاحقًا</span>
+      <p>لن يضيع شيء. عقل التطبيق (<code>src/tutor.js</code>) منفصل عن قنوات التواصل. إضافة الواتساب تعني كتابة ملف واحد جديد، لا إعادة بناء المشروع.</p>
+    </div>
+  </section>
+
+  <section id="need">
+    <h2>ما تحتاجه قبل البدء</h2>
+    <ul>
+      <li>حاسوب (ويندوز أو ماك أو لينكس).</li>
+      <li>برنامج <a href="https://nodejs.org">Node.js</a> نسخة 20 أو أحدث. حمّله وثبّته بشكل عادي.</li>
+      <li>مفتاح API من <a href="https://console.anthropic.com">console.anthropic.com</a> — وهذا ما يؤدي ثمن الأجوبة.</li>
+    </ul>
+    <div class="note">
+      <span class="label">أين تُكتب الأوامر</span>
+      <p>كل الأوامر في هذا الدليل تُكتب في <strong>Terminal</strong> (ماك ولينكس) أو <strong>PowerShell</strong> (ويندوز)، بعد الدخول إلى مجلد المشروع.</p>
+    </div>
+  </section>
+
+  <section id="setup">
+    <h2>خطوات التشغيل الستّ</h2>
+    <p>نفّذها بالترتيب. الخطوات من 1 إلى 3 تفعلها مرة واحدة فقط.</p>
+
+    <div class="protocol">
+
+      <div class="stage">
+        <div class="num">1</div>
+        <h2>التثبيت</h2>
+        <p>افتح مجلد المشروع في الطرفية ثم اكتب:</p>
+        <pre><code>npm install</code></pre>
+        <p>انتظر حتى ينتهي. تفعل هذا مرة واحدة فقط.</p>
+      </div>
+
+      <div class="stage">
+        <div class="num">2</div>
+        <h2>مفتاح API</h2>
+        <ol>
+          <li>ادخل إلى <a href="https://console.anthropic.com">console.anthropic.com</a> وأنشئ حسابًا.</li>
+          <li>اذهب إلى <strong>API Keys</strong> وأنشئ مفتاحًا جديدًا.</li>
+          <li>انسخ المفتاح واحتفظ به — لن يظهر لك مرة أخرى.</li>
+          <li>أضف رصيدًا إلى الحساب من قسم <strong>Billing</strong>.</li>
+        </ol>
+        <div class="note warn">
+          <span class="label">تنبيه</span>
+          <p>بدون رصيد في الحساب لن يعمل التطبيق، وسيرى التلميذ رسالة خطأ.</p>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="num">3</div>
+        <h2>الإعدادات</h2>
+        <p>انسخ ملف الإعدادات النموذجي:</p>
+        <pre><code>cp .env.example .env</code></pre>
+        <p>ثم افتح الملف <code>.env</code> بأي محرر نصوص، واملأ على الأقل هذه السطور:</p>
+        <pre><code>ANTHROPIC_API_KEY=sk-ant-...
+SUBJECT=Sciences de la Vie et de la Terre (SVT)
+TEACHER_NAME=الأستاذ عماري
+CLASS_CODE=svt2026
+TEACHER_PASSWORD=كلمة-سر-تعرفها-أنت-وحدك</code></pre>
+
+        <div class="scroller">
+          <table>
+            <thead>
+              <tr><th>الإعداد</th><th>ما يفعله</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>ANTHROPIC_API_KEY</code></td><td>مفتاحك من الخطوة 2</td></tr>
+              <tr><td><code>SUBJECT</code></td><td>المادة التي تدرّسها. يمكنك كتابتها بالعربية: علوم الحياة والأرض</td></tr>
+              <tr><td><code>TEACHER_NAME</code></td><td>اسمك كما يظهر للتلاميذ</td></tr>
+              <tr><td><code>BOT_NAME</code></td><td>اسم المساعد، مثلًا: مساعد علوم الحياة والأرض</td></tr>
+              <tr><td><code>DEFAULT_LANG</code></td><td><code>ar</code> للعربية دائمًا، <code>fr</code> للفرنسية، أو <code>auto</code> ليجيب بلغة سؤال التلميذ</td></tr>
+              <tr><td><code>CLASS_CODE</code></td><td>رمز يكتبه التلميذ مرة واحدة فقط</td></tr>
+              <tr><td><code>TEACHER_PASSWORD</code></td><td>كلمة سر لوحة الأستاذ</td></tr>
+              <tr><td><code>RATE_LIMIT_PER_HOUR</code></td><td>أقصى عدد أسئلة للتلميذ الواحد في الساعة (40 افتراضيًا)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note stop">
+          <span class="label">مهم جدًا</span>
+          <p>
+            <strong>اضبط <code>CLASS_CODE</code> قبل أن تشارك الرابط.</strong>
+            بدونه، كل من يحصل على الرابط يستطيع طرح أسئلة بلا حدود <strong>على حسابك أنت</strong>.
+            مع الرمز، يكتبه التلميذ مرة واحدة ولا يُطلب منه بعدها.
+          </p>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="num">4</div>
+        <h2>إضافة دروسك</h2>
+        <p>ضع ملفات دروسك داخل مجلد <code>lessons/</code>:</p>
+        <div class="tree">lessons/
+  01-la-cellule.pdf
+  02-la-mitose.pdf
+  semestre-2/03-geologie.pptx</div>
+
+        <div class="scroller">
+          <table>
+            <thead>
+              <tr><th>الصيغة</th><th>ملاحظات</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.pdf</code></td><td>رقمية <strong>وكذلك المصوّرة</strong> بالماسح الضوئي أو بالهاتف، بما فيها الكتابة اليدوية</td></tr>
+              <tr><td><code>.docx</code></td><td>ملفات Word</td></tr>
+              <tr><td><code>.pptx</code></td><td>عروض PowerPoint، مع ملاحظات العارض</td></tr>
+              <tr><td><code>.md</code> / <code>.txt</code></td><td>ملاحظات نصية بسيطة</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <ul>
+          <li><strong>سمِّ الملفات بوضوح.</strong> اسم الملف هو اسم الدرس الذي يراه التلميذ: <code>02-la-mitose.pdf</code> يظهر كـ «02 la mitose».</li>
+          <li><strong>المجلدات الفرعية تعمل</strong>: <code>semestre-2/03-geologie.pdf</code> يظهر كـ «semestre-2 / 03 geologie».</li>
+          <li><strong>درس واحد في كل ملف</strong> هو الأفضل، ويُبقي حجم الملف تحت 32 ميغابايت.</li>
+        </ul>
+
+        <h3>ملاحظة خاصة بمادتك</h3>
+        <p>
+          دروس علوم الحياة والأرض مليئة بالرسوم والتخطيطات: schémas وcoupes géologiques ودورات بيولوجية.
+          التطبيق يقرأ هذه الرسوم وينقل <strong>كل البيانات المكتوبة عليها</strong> (les légendes)،
+          لأنها هي المحتوى الحقيقي للدرس وليست زينة.
+        </p>
+        <div class="note warn">
+          <span class="label">لكي ينجح ذلك</span>
+          <ul>
+            <li>إذا صوّرت صفحة بهاتفك، تأكد أن <strong>أسماء الأجزاء على التخطيط مقروءة</strong>. صورة واضحة تعني جوابًا صحيحًا.</li>
+            <li>الرسوم بدون بيانات مكتوبة لن يفهمها التطبيق جيدًا. إن كان لديك تخطيط مهم بدون بيانات، أضف شرحه في ملف <code>.txt</code> بجانبه.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="num">5</div>
+        <h2>قراءة الدروس</h2>
+        <pre><code>npm run ingest</code></pre>
+        <p>
+          هنا يقرأ التطبيق ملفاتك ويحوّلها إلى فهرس قابل للبحث. ملفات PDF تُرسَل إلى Claude ليقرأها —
+          وهو يتعامل مع الصفحات الممسوحة والخط اليدوي والحروف العربية والرسوم والتخطيطات.
+        </p>
+        <div class="note">
+          <span class="label">تدفع مرة واحدة فقط</span>
+          <p>نتيجة القراءة محفوظة. إذا أعدت تشغيل الأمر، لن يُعاد قراءة الملفات التي لم تتغير، ولن تدفع ثمنها مرتين.</p>
+        </div>
+        <p>أعد تشغيل هذا الأمر كلما أضفت درسًا جديدًا أو عدّلت درسًا قديمًا.</p>
+      </div>
+
+      <div class="stage">
+        <div class="num">6</div>
+        <h2>التشغيل</h2>
+        <pre><code>npm start</code></pre>
+        <p>ستظهر رسالة فيها رابطان:</p>
+        <ul>
+          <li><code>http://localhost:3000</code> — هذا ما يراه التلاميذ.</li>
+          <li><code>http://localhost:3000/teacher</code> — لوحتك أنت.</li>
+        </ul>
+        <p>للدخول إلى اللوحة: اكتب أي اسم مستخدم، وكلمة السر هي <code>TEACHER_PASSWORD</code> التي وضعتها في ملف <code>.env</code>.</p>
+        <div class="note warn">
+          <span class="label">انتبه</span>
+          <p>في هذه المرحلة التطبيق يعمل <strong>على حاسوبك فقط</strong>، ولا يستطيع التلاميذ الوصول إليه. لمشاركته معهم، انظر قسم <a href="#deploy">النشر على الإنترنت</a>.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="dashboard">
+    <h2>لوحة الأستاذ</h2>
+    <p>تعرض لك أربعة أشياء:</p>
+    <ul>
+      <li><strong>عدد الأسئلة وعدد التلاميذ</strong> الذين استعملوا التطبيق.</li>
+      <li><strong>الأسئلة حسب الدرس</strong>: أي درس يطرح حوله التلاميذ أكبر عدد من الأسئلة — غالبًا هو الأصعب عليهم.</li>
+      <li><strong>أسئلة لا تغطيها دروسك</strong>: كل سؤال هنا لم يجد التطبيق جوابه في موادك، فأحال التلميذ عليك.</li>
+      <li><strong>آخر الأسئلة</strong>: اضغط على أي سؤال لترى الجواب كاملًا.</li>
+    </ul>
+    <div class="note">
+      <span class="label">أهم قائمة في اللوحة</span>
+      <p>قائمة «أسئلة لا تغطيها دروسك». اقرأها قبل الحصة القادمة — إنها تقول لك بالضبط ما لم يفهمه تلاميذك أو ما لم تشرحه بعد.</p>
+    </div>
+  </section>
+
+  <section id="telegram">
+    <h2>بوت تيليغرام</h2>
+    <p>اختياري، لكنه سهل:</p>
+    <ol>
+      <li>افتح تيليغرام وابحث عن <a href="https://t.me/botfather">BotFather@</a>.</li>
+      <li>أرسل له <code>/newbot</code> واتبع تعليماته (سيطلب اسمًا للبوت، ثم اسم مستخدم ينتهي بـ <code>bot</code>).</li>
+      <li>سيعطيك رمزًا بهذا الشكل: <code>123456:ABC-DEF...</code></li>
+      <li>ضع الرمز في ملف <code>.env</code>:</li>
+    </ol>
+    <pre><code>TELEGRAM_BOT_TOKEN=123456:ABC-DEF...</code></pre>
+    <p>ثم، في نافذة طرفية <strong>ثانية</strong> (اترك <code>npm start</code> تعمل في الأولى):</p>
+    <pre><code>npm run telegram</code></pre>
+    <p>سيطبع رابطًا من الشكل <code>https://t.me/...</code> — هذا ما تشاركه مع التلاميذ.</p>
+
+    <h3>الأوامر المتاحة للتلميذ</h3>
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th>الأمر</th><th>ما يفعله</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>/start</code></td><td>بداية المحادثة</td></tr>
+          <tr><td><code>/lessons</code></td><td>اختيار درس واحد للتركيز عليه</td></tr>
+          <tr><td><code>/all</code></td><td>البحث في كل الدروس من جديد</td></tr>
+          <tr><td><code>/reset</code></td><td>بدء محادثة جديدة</td></tr>
+          <tr><td><code>/help</code></td><td>عرض المساعدة</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="deploy">
+    <h2>النشر على الإنترنت</h2>
+    <p>
+      ليحصل التلاميذ على رابط حقيقي يعمل في أي وقت، تحتاج إلى استضافة.
+      خدمات مثل <a href="https://railway.app">Railway</a> أو <a href="https://render.com">Render</a>
+      أو <a href="https://fly.io">Fly.io</a> تكفي، ولها خطط مجانية أو شبه مجانية.
+    </p>
+    <ol>
+      <li>ارفع المشروع إلى GitHub واربطه بالخدمة.</li>
+      <li>أضف نفس متغيرات ملف <code>.env</code> في إعدادات الخدمة (Environment Variables).</li>
+      <li>شغّل <code>npm run ingest</code> قبل النشر، وأضف الملف الناتج <code>data/index.json</code> إلى المستودع — أو اجعل الخدمة تشغّل هذا الأمر عند النشر.</li>
+    </ol>
+    <div class="note stop">
+      <span class="label">لا تنسَ هذه</span>
+      <p>بدون الملف <code>data/index.json</code> على الخادم، لن يجيب التطبيق عن أي سؤال، وسيقول للتلاميذ إن الدروس لم تُرفع بعد.</p>
+    </div>
+    <p>
+      بعدها شارك الرابط في مجموعة القسم. يستطيع التلاميذ في أندرويد والآيفون الضغط على
+      «إضافة إلى الشاشة الرئيسية» ليصبح كتطبيق مثبَّت على الهاتف.
+    </p>
+  </section>
+
+  <section id="cost">
+    <h2>التكلفة واختيار النموذج</h2>
+    <p>تدفع لشركة Anthropic حسب الاستعمال، وهناك تكلفتان:</p>
+    <p><strong>قراءة الدروس</strong> — مرة واحدة فقط ومحفوظة. ملف PDF من 30 صفحة يكلف سنتيمات قليلة.</p>
+    <p><strong>الأجوبة</strong> — هذه هي التكلفة المتكررة، وتتعلق بالنموذج المختار في <code>CLAUDE_MODEL</code>:</p>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th>النموذج</th><th>مناسب لـ</th><th>التكلفة</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>claude-opus-5</code></td><td>الرياضيات والفيزياء والاستدلال المعقّد</td><td>الأعلى</td></tr>
+          <tr><td><code>claude-sonnet-5</code></td><td>أغلب المواد</td><td>متوسطة</td></tr>
+          <tr><td><code>claude-haiku-4-5</code></td><td>التعاريف والآليات وقراءة الوثائق</td><td>الأقل</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>توصيتي لمادتك</h3>
+    <p>
+      مادة علوم الحياة والأرض قائمة أساسًا على التعاريف والآليات وقراءة الوثائق،
+      لا على حسابات متعددة المراحل. لذلك ابدأ بهذين السطرين في <code>.env</code>:
+    </p>
+    <pre><code>CLAUDE_MODEL=claude-haiku-4-5
+CLAUDE_EFFORT=low</code></pre>
+    <p>
+      هذا سيقلّل فاتورتك بشكل كبير، والجودة كافية جدًا لمادتك.
+      راقب لوحة الأستاذ أسبوعًا؛ إن لاحظت أن الأجوبة سطحية في درس معيّن،
+      غيّر إلى <code>claude-sonnet-5</code>. تغيير سطر واحد ثم إعادة التشغيل، بدون تعديل أي كود.
+    </p>
+
+    <h3>عاملان يحميان فاتورتك أصلًا</h3>
+    <ul>
+      <li><code>RATE_LIMIT_PER_HOUR</code> يحدّد عدد أسئلة التلميذ الواحد في الساعة.</li>
+      <li><strong>الذاكرة المؤقتة</strong>: إن كانت دروسك صغيرة بما يكفي، تُرسَل كاملة مع كل سؤال لكنها محفوظة مؤقتًا، فتكلّف الأسئلة المتكررة جزءًا يسيرًا من الأولى.</li>
+    </ul>
+  </section>
+
+  <section id="behaviour">
+    <h2>كيف يجيب التطبيق؟</h2>
+    <p>التطبيق مقيَّد عمدًا:</p>
+    <ul>
+      <li><strong>يجيب من دروسك، لا من الإنترنت.</strong> إن كنت تدرّس تعريفًا أو منهجية تختلف عن المتداول، درسك هو المرجع.</li>
+      <li><strong>إن لم تغطِّ موادك السؤال، يقول ذلك بوضوح</strong> ويحيل التلميذ عليك، بدل أن يخترع جوابًا. وتظهر هذه الأسئلة في لوحتك.</li>
+      <li><strong>لا يحل الواجبات.</strong> إن طلب التلميذ حل تمرين، يذكّره بالقاعدة المناسبة، ويشرح الخطوة الأولى، ثم يطلب منه إكمالها ويصحّح له محاولته. إن أردت أن يعطي الحل كاملًا، ضع <code>HINT_MODE=false</code>.</li>
+      <li><strong>يجيب بلغة التلميذ</strong>: إن سأل بالعربية أجاب بالعربية، وإن سأل بالفرنسية أجاب بالفرنسية.</li>
+    </ul>
+  </section>
+
+  <section id="message">
+    <h2>رسالة جاهزة للتلاميذ</h2>
+    <p>انسخ هذه الرسالة إلى مجموعة القسم، وعدّل الرابط والرمز:</p>
+
+    <div class="copyblock">
+      <header>
+        <span>رسالة مجموعة القسم</span>
+        <button type="button" id="copy" data-done="false">نسخ</button>
+      </header>
+      <p class="body" id="msg">السلام عليكم،
+
+وضعت لكم مساعدًا يجيب عن أسئلتكم في مادة علوم الحياة والأرض، انطلاقًا من الدروس التي شرحناها في القسم.
+
+الرابط: (ضع الرابط هنا)
+رمز القسم: svt2026
+
+اكتبوا الرمز مرة واحدة فقط في أول مرة.
+اسألوا بالعربية أو بالفرنسية، كما تشاؤون.
+
+ملاحظتان:
+— المساعد لا يحل لكم التمارين، بل يوجّهكم خطوة بخطوة.
+— إن سألتم عن درس لم ندرسه بعد، سيقول لكم ذلك.
+
+لإضافته إلى شاشة هاتفكم: افتحوا الرابط، ثم اختاروا «إضافة إلى الشاشة الرئيسية» من قائمة المتصفح.</p>
+    </div>
+  </section>
+
+  <section id="trouble">
+    <h2>مشاكل شائعة وحلولها</h2>
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th>المشكلة</th><th>الحل</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>No lessons indexed yet</code></td><td>لم تشغّل <code>npm run ingest</code> بعد، أو مجلد <code>lessons/</code> فارغ</td></tr>
+          <tr><td><code>No lesson files found</code></td><td>ضع ملفاتك داخل مجلد <code>lessons/</code> وتأكد أن صيغتها مقبولة</td></tr>
+          <tr><td>رسالة خطأ عند طرح سؤال</td><td>تحقق من <code>ANTHROPIC_API_KEY</code> في <code>.env</code>، ومن وجود رصيد في حسابك</td></tr>
+          <tr><td>التطبيق لا يقبل رمز القسم</td><td>الرمز في <code>.env</code> يجب أن يطابق ما يكتبه التلميذ (حالة الأحرف غير مهمة)</td></tr>
+          <tr><td>PDF كبير جدًا</td><td>الحد الأقصى 32 ميغابايت. قسّم الملف إلى فصول</td></tr>
+          <tr><td>أضفت درسًا ولم يظهر</td><td>أعد تشغيل <code>npm run ingest</code>، ثم اضغط «Reload lessons» في لوحة الأستاذ</td></tr>
+          <tr><td>البوت لا يرد في تيليغرام</td><td>تأكد أن <code>npm run telegram</code> ما زال يعمل في نافذة الطرفية</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      نسخة نصية من هذا الدليل موجودة في المشروع باسم <code>GUIDE-AR.md</code>،
+      والدليل التقني بالإنجليزية في <code>README.md</code>.
+    </p>
+  </footer>
+
+</div>
+
+<script>
+  const button = document.getElementById("copy");
+  const message = document.getElementById("msg");
+
+  button.addEventListener("click", async () => {
+    const text = message.textContent;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      // Clipboard permission denied: select the text so the reader can copy it.
+      const range = document.createRange();
+      range.selectNodeContents(message);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      button.textContent = "انسخ المحدَّد";
+      return;
+    }
+    button.textContent = "تم النسخ";
+    button.dataset.done = "true";
+    setTimeout(() => {
+      button.textContent = "نسخ";
+      button.dataset.done = "false";
+    }, 2000);
+  });
+</script>
