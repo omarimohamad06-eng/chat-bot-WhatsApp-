@@ -1,0 +1,224 @@
+:root {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --ink: #1b1c1a;
+  --muted: #6b6f6a;
+  --accent: #1f6f5c;
+  --accent-ink: #ffffff;
+  --bubble-you: #1f6f5c;
+  --bubble-bot: #ffffff;
+  --line: #e2e1db;
+  --error: #b3261e;
+  --radius: 16px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14161a;
+    --surface: #1d2026;
+    --ink: #eceef0;
+    --muted: #9aa0a6;
+    --accent: #4fbfa0;
+    --accent-ink: #0d1512;
+    --bubble-you: #2c6d5e;
+    --bubble-bot: #1d2026;
+    --line: #2c3039;
+    --error: #ff8a80;
+  }
+}
+
+* { box-sizing: border-box; }
+/* Class rules that set `display` would otherwise beat the browser's default
+   [hidden] rule, leaving hidden elements (the login gate) stuck on screen. */
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.6 system-ui, -apple-system, "Segoe UI", "Noto Naskh Arabic", "Noto Sans Arabic", Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  overscroll-behavior-y: contain;
+}
+html[dir="rtl"] body { font-family: "Noto Naskh Arabic", "Segoe UI", system-ui, sans-serif; }
+
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.error { color: var(--error); font-size: 14px; }
+
+/* ------------------------------------------------------------------- gate */
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+.gate-card {
+  width: min(380px, 100%);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 28px 24px;
+  text-align: center;
+}
+.gate-emoji { font-size: 44px; }
+.gate-card h1 { font-size: 22px; margin: 8px 0 4px; }
+.field { display: block; text-align: start; margin: 18px 0 0; }
+.field span { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+input, textarea, select {
+  font: inherit;
+  color: inherit;
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 11px 13px;
+}
+input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.primary {
+  margin-top: 18px;
+  width: 100%;
+  font: inherit;
+  font-weight: 600;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: 0;
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
+}
+.primary:disabled { opacity: .5; cursor: default; }
+.lang-row { display: flex; gap: 8px; justify-content: center; margin-top: 20px; }
+.lang {
+  font: inherit;
+  font-size: 13px;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 12px;
+  color: var(--muted);
+  cursor: pointer;
+}
+.lang[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+
+/* -------------------------------------------------------------------- bar */
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  padding-top: max(10px, env(safe-area-inset-top));
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+.bar-main { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.bar-main strong { font-size: 15px; }
+.lesson-filter { width: auto; max-width: 45%; padding: 7px 10px; font-size: 13px; border-radius: 999px; }
+
+/* ------------------------------------------------------------------- chat */
+.chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 14px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scroll-behavior: smooth;
+}
+.msg { max-width: 88%; display: flex; flex-direction: column; gap: 4px; }
+.msg.you { align-self: flex-end; align-items: flex-end; }
+.msg.bot { align-self: flex-start; }
+.bubble {
+  padding: 11px 14px;
+  border-radius: var(--radius);
+  background: var(--bubble-bot);
+  border: 1px solid var(--line);
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+.msg.you .bubble {
+  background: var(--bubble-you);
+  color: #fff;
+  border-color: transparent;
+  border-end-end-radius: 5px;
+}
+.msg.bot .bubble { border-end-start-radius: 5px; }
+.bubble > :first-child { margin-top: 0; }
+.bubble > :last-child { margin-bottom: 0; }
+.bubble p { margin: 0 0 10px; }
+.bubble ul, .bubble ol { margin: 0 0 10px; padding-inline-start: 20px; }
+.bubble li { margin: 3px 0; }
+.bubble h1, .bubble h2, .bubble h3 { font-size: 1.05em; margin: 12px 0 6px; }
+.bubble code {
+  background: rgba(127,127,127,.16);
+  padding: 1px 5px;
+  border-radius: 5px;
+  font-size: .9em;
+}
+.bubble pre {
+  background: rgba(127,127,127,.14);
+  padding: 10px 12px;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin: 0 0 10px;
+}
+.bubble pre code { background: none; padding: 0; }
+.bubble table { border-collapse: collapse; display: block; overflow-x: auto; margin-bottom: 10px; }
+.bubble th, .bubble td { border: 1px solid var(--line); padding: 5px 9px; text-align: start; }
+.sources { font-size: 12px; color: var(--muted); padding-inline: 4px; }
+.typing { display: inline-flex; gap: 4px; padding: 4px 0; }
+.typing i {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--muted); animation: blink 1.3s infinite;
+}
+.typing i:nth-child(2) { animation-delay: .18s; }
+.typing i:nth-child(3) { animation-delay: .36s; }
+@keyframes blink { 0%,60%,100% { opacity:.25 } 30% { opacity:1 } }
+
+.hint {
+  align-self: center;
+  text-align: center;
+  max-width: 420px;
+  color: var(--muted);
+  font-size: 14px;
+  padding: 24px 8px;
+}
+.chip-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
+.chip {
+  font: inherit;
+  font-size: 13px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 13px;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------- composer */
+.composer {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  padding: 10px 12px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+.composer textarea { resize: none; max-height: 140px; border-radius: 20px; }
+#send {
+  flex: none;
+  width: 42px; height: 42px;
+  display: grid; place-items: center;
+  border: 0; border-radius: 50%;
+  background: var(--accent); color: var(--accent-ink);
+  cursor: pointer;
+}
+#send:disabled { opacity: .4; cursor: default; }
+html[dir="rtl"] #send svg { transform: scaleX(-1); }

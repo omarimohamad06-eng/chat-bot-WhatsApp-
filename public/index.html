@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Lesson Assistant</title>
+<meta name="theme-color" content="#1f6f5c" />
+<link rel="manifest" href="/manifest.json" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📘</text></svg>" />
+<link rel="stylesheet" href="/styles.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" onerror="this.remove()" />
+</head>
+<body>
+
+<div id="gate" class="gate" hidden>
+  <div class="gate-card">
+    <div class="gate-emoji">📘</div>
+    <h1 id="gate-title">Lesson Assistant</h1>
+    <p id="gate-sub" class="muted"></p>
+    <label class="field">
+      <span data-i18n="yourName">Your name</span>
+      <input id="student-name" autocomplete="name" />
+    </label>
+    <label class="field" id="code-field" hidden>
+      <span data-i18n="classCode">Class code</span>
+      <input id="class-code" autocomplete="off" />
+    </label>
+    <p id="gate-error" class="error" hidden></p>
+    <button id="gate-go" class="primary" data-i18n="start">Start</button>
+    <div class="lang-row">
+      <button class="lang" data-lang="ar">العربية</button>
+      <button class="lang" data-lang="fr">Français</button>
+      <button class="lang" data-lang="en">English</button>
+    </div>
+  </div>
+</div>
+
+<header class="bar">
+  <div class="bar-main">
+    <strong id="bot-name">Lesson Assistant</strong>
+    <span id="bot-sub" class="muted small"></span>
+  </div>
+  <select id="lesson-filter" class="lesson-filter" aria-label="Lesson"></select>
+</header>
+
+<main id="chat" class="chat"></main>
+
+<form id="composer" class="composer">
+  <textarea id="input" rows="1" data-i18n-ph="placeholder" placeholder="Ask about the lesson…" enterkeyhint="send"></textarea>
+  <button id="send" type="submit" aria-label="Send">
+    <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 20.5v-6l8-2.5-8-2.5v-6L22 12z"/></svg>
+  </button>
+</form>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

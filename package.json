@@ -1,0 +1,21 @@
+{
+  "name": "lesson-tutor-bot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "AI tutor chatbot that answers students' questions from your own lesson material. Web app + Telegram bot.",
+  "scripts": {
+    "ingest": "node src/ingest.js",
+    "start": "node src/server.js",
+    "telegram": "node src/telegram.js",
+    "dev": "node --watch src/server.js"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.0",
+    "adm-zip": "^0.5.16",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mammoth": "^1.11.0"
+  }
+}
